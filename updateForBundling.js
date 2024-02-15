@@ -14,7 +14,7 @@ function updatePackageJson() {
             const packageJson = JSON.parse(data);
 
             if (packageJson.name && packageJson.name === '@salesforce/core') {
-                packageJson.name = '@salesforce/core-bundle';
+                packageJson.name = '@mingxuanzhangsfdx/core-bundle';
 
                 fs.writeFile(packagePath, JSON.stringify(packageJson, null, 2), 'utf8', (writeErr) => {
                     if (writeErr) {
