@@ -62,6 +62,21 @@ function updateLoggerTs() {
     });
 }
 
+// function to create .npmrc
+function createNpmrcFile() {
+    const npmrcPath = './.npmrc';
+    const content = '//registry.npmjs.org/:_authToken=${NPM_TOKEN}';
+
+    fs.writeFile(npmrcPath, content, 'utf8', (err) => {
+        if (err) {
+            console.error(`Error writing to .npmrc: ${err}`);
+        } else {
+            console.log('.npmrc created successfully.');
+        }
+    });
+}
+
 // Run the update functions
 updatePackageJson();
 updateLoggerTs();
+createNpmrcFile();
