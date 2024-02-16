@@ -13,19 +13,24 @@ function updatePackageJson() {
         try {
             const packageJson = JSON.parse(data);
 
+            // Update package name if necessary
             if (packageJson.name && packageJson.name === '@salesforce/core') {
                 packageJson.name = '@mingxuanzhangsfdx/core-bundle';
-
-                fs.writeFile(packagePath, JSON.stringify(packageJson, null, 2), 'utf8', (writeErr) => {
-                    if (writeErr) {
-                        console.error(`Error writing to package.json: ${writeErr}`);
-                    } else {
-                        console.log('Package name updated successfully in package.json.');
-                    }
-                });
-            } else {
-                console.log('Package name is not @salesforce/core or does not exist in package.json.');
             }
+
+            // Remove 'prepack' and 'prepare' scripts
+            if (packageJson.scripts) {
+                delete packageJson.scripts.prepack;
+                delete packageJson.scripts.prepare;
+            }
+
+            fs.writeFile(packagePath, JSON.stringify(packageJson, null, 2), 'utf8', (writeErr) => {
+                if (writeErr) {
+                    console.error(`Error writing to package.json: ${writeErr}`);
+                } else {
+                    console.log('package.json updated successfully.');
+                }
+            });
         } catch (parseErr) {
             console.error(`Error parsing JSON in package.json: ${parseErr}`);
         }
