@@ -64,8 +64,15 @@ function updateLoggerTs() {
 
 // function to create .npmrc
 function createNpmrcFile() {
-    const npmrcPath = './.npmrc';
-    const content = '//registry.npmjs.org/:_authToken=${NPM_TOKEN}';
+    const npmrcPath = '.npmrc';
+    const content = `
+//registry.npmjs.org/:_authToken=${NPM_TOKEN}
+registry=https://registry.npmjs.org/
+save-exact=true
+progress=false
+package-lock=true
+always-auth=true
+    `;
 
     fs.writeFile(npmrcPath, content, 'utf8', (err) => {
         if (err) {
