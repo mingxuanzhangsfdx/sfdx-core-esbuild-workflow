@@ -64,8 +64,7 @@ function updateLoggerTs() {
 
 // function to create .npmrc
 function createNpmrcFile() {
-    const npmrcPath = '"$HOME/.npmrc"';
-    NPM_TOKEN="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";
+    const npmrcPath = './.npmrc';
     console.log(NPM_TOKEN);
     const content = `
 //registry.npmjs.org/:_authToken=${NPM_TOKEN}
