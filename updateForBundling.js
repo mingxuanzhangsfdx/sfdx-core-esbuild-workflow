@@ -86,4 +86,4 @@ always-auth=true
 // Run the update functions
 updatePackageJson();
 updateLoggerTs();
-createNpmrcFile();
+// createNpmrcFile();
